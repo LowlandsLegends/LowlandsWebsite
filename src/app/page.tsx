@@ -22,12 +22,11 @@ export default function Home() {
             <a href='https://discord.gg/46cJAE9z4h' className={styles.button}>
                 <Icon Component={DiscordLogo} alt="DiscordLogo"/>
             </a>
-            <a href="/server-info">
+            <a href="/app/server-info">
                 <Icon Component={AscendedLogo} alt="Ascended Logo"/>
             </a>
             <Icon Component={ShopIcon} alt="Shop Icon"/>
         </div>
-        
     </div>
   );
 }

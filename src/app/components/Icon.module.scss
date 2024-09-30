@@ -16,13 +16,15 @@
 
   @media(min-width: 768px){
     border-radius: 30%;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(5px);
     padding-left: 10px;
     padding-right: 10px;
   }
   @media(max-width: 768px){
     border-radius: 30%;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(5px);
     height: 65px;
     width: clamp(65px, 6.5vw, 130px);
     padding: 10px;

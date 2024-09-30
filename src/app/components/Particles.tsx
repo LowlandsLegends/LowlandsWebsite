@@ -9,6 +9,7 @@ import {
   OutMode,
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim"; 
+import React from "react";
 
 const ParticlesBackground = () => {
   const [init, setInit] = useState(false);
@@ -67,7 +68,7 @@ const ParticlesBackground = () => {
             default: OutMode.out,
           },
           random: true,
-          speed: 10,
+          speed: 5,
           straight: false,
         },
         number: {
@@ -81,7 +82,12 @@ const ParticlesBackground = () => {
           value: 0.5,
         },
         shape: {
-          type: "square",
+          type: "image",
+          image: {
+            src: "../images/Logo.png", // Replace with the path to your image
+            width: 100,
+            height: 100,
+          },
         },
         size: {
           value: { min: 1, max: 5 },
