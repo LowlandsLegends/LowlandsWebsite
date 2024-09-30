@@ -1,0 +1,39 @@
+/* components/Icon.module.scss */
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+
+.icon {
+  position: relative; // Add this line
+  width: clamp(110px, 13vw, 220px);
+  height: 100px; // Make sure to specify 'px'
+  transition: transform 0.3s ease;
+
+  @media(min-width: 768px){
+    border-radius: 30%;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media(max-width: 768px){
+    border-radius: 30%;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    height: 65px;
+    width: clamp(65px, 6.5vw, 130px);
+    padding: 10px;
+  }
+
+  // existing styles
+
+  &:hover {
+    transform: scale(1.1);
+  }
+  
+}
+
+
