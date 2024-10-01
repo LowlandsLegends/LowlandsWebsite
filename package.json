@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@million/lint": "^1.0.0",
     "@svgr/webpack": "^8.1.0",
     "@tsparticles/all": "^3.5.0",
     "@tsparticles/engine": "^3.5.0",
