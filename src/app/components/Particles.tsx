@@ -19,9 +19,11 @@ interface ParticlesBackgroundProps {
 	density: Array<number>; // min[0], max[1]
 	speed: number;
 	click: boolean;
+	link: boolean;
+	hover:boolean;
 }
 
-export default function ParticlesBackground({ imageSrc, imageSize, density, speed = 2 }: ParticlesBackgroundProps) {
+export default function ParticlesBackground({ imageSrc, imageSize, density, speed, link, click, hover }: ParticlesBackgroundProps) {
 	const [particlesInit, setParticlesInit] = useState<(engine: Engine) => Promise<void>>();
 
 	useEffect(() => {
@@ -50,11 +52,11 @@ export default function ParticlesBackground({ imageSrc, imageSize, density, spee
 				interactivity: {
 					events: {
 						onClick: {
-							enable: true,
+							enable: click,
 							mode: "push",
 						},
 						onHover: {
-							enable: false,
+							enable: hover,
 							mode: "repulse", // Changed from "repulse" to "attract"
 						}
 					},
@@ -73,7 +75,7 @@ export default function ParticlesBackground({ imageSrc, imageSize, density, spee
 					links: {
 						color: "#fe1d4c",
 						distance: 180,
-						enable: false,
+						enable: link,
 						opacity: 1,
 						width: 1,
 					},

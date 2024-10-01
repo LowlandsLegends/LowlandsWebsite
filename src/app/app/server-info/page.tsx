@@ -1,13 +1,14 @@
 // pages/about.tsx
 import React from 'react';
+import ServerCard from '@components/ServerCard'
 
 const InfoPage: React.FC = () => {
-  return (
-    <div>
-      <h1>About Us</h1>
-      <p>This is the about page</p>
-    </div>
-  );
+	return (
+		<ServerCard
+			imageSrc='/images/Logo.svg'
+			href='/'
+		/>
+	);
 };
 
 export default InfoPage;

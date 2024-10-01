@@ -16,7 +16,9 @@ export default function Home() {
 				imageSize={[7, 10]}
 				density={[20, 40]}
 				click={true}
-				speed={2}
+				speed={4}
+				link={true}
+				hover={true}
 			/>
 			<div className={styles.main} style={{ zIndex: 10 }}>
 				<Logo
