@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <div style={{ height: '100%', width: '100%' }}>
 		<div className={styles.navbar}>
-			<a href="/" style={{margin:10, zIndex: 10}}>
+			<a href="/" className={styles.logo} style={{zIndex: 10}}>
 				<Logo
 					width={60}
 					height={60}

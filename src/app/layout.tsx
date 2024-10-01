@@ -1,4 +1,5 @@
-import styles from './page.module.scss'
+import '@styles/globals.scss';
+import '@styles/globals.css';
 
 export default function RootLayout({
 	children,
@@ -7,7 +8,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body style={{ height: '100vh', margin: 0 }} className={styles.page}>
+			<body style={{ height: '100vh', margin: 0 }}>
 				<div style={{ height: '100%', width: '100%' }}>
 					{children}
 				</div>

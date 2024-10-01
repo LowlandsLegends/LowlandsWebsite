@@ -17,3 +17,7 @@
     backdrop-filter: blur(5px); /* This is the blur strength */
     z-index: 2; /* Make sure this stays on top of the content */
 }
+
+.logo{
+    display: inline-block;
+}
