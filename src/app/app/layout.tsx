@@ -15,7 +15,6 @@ export default function RootLayout({
 				<Logo
 					width={60}
 					height={60}
-					
 				/>
 			</a>
 		</div>

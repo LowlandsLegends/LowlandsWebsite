@@ -14,100 +14,100 @@ import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles
 import { Engine } from "tsparticles-engine";
 
 interface ParticlesBackgroundProps {
-  imageSrc: string;
-  imageSize: Array<number>; // min[0], max[1]
-  density: Array<number>; // min[0], max[1]
-  speed: number;
-  click: boolean;
+	imageSrc: string;
+	imageSize: Array<number>; // min[0], max[1]
+	density: Array<number>; // min[0], max[1]
+	speed: number;
+	click: boolean;
 }
 
-export default function ParticlesBackground({imageSrc, imageSize, density, click=true, speed=2}: ParticlesBackgroundProps) {
-  const [particlesInit, setParticlesInit] = useState<(engine: Engine) => Promise<void>>();
+export default function ParticlesBackground({ imageSrc, imageSize, density, speed = 2 }: ParticlesBackgroundProps) {
+	const [particlesInit, setParticlesInit] = useState<(engine: Engine) => Promise<void>>();
 
-  useEffect(() => {
-    const initializeParticles = async (engine: Engine) => {
-      // Load required components for particles
-      await loadColorUpdater(engine);
-      await loadBaseMover(engine);
-      await loadSizeUpdater(engine);
-      await loadOpacityUpdater(engine);
-      await loadOutModesUpdater(engine);
-      await loadImageShape(engine);
-      await loadExternalPushInteraction(engine);
-      await loadExternalRepulseInteraction(engine);
-      await loadParticlesLinksInteraction(engine);
-    };
+	useEffect(() => {
+		const initializeParticles = async (engine: Engine) => {
+			// Load required components for particles
+			await loadColorUpdater(engine);
+			await loadBaseMover(engine);
+			await loadSizeUpdater(engine);
+			await loadOpacityUpdater(engine);
+			await loadOutModesUpdater(engine);
+			await loadImageShape(engine);
+			await loadExternalPushInteraction(engine);
+			await loadExternalRepulseInteraction(engine);
+			await loadParticlesLinksInteraction(engine);
+		};
 
-    setParticlesInit(() => initializeParticles); // Store the initialized function in state
-  }, []); // Only run once on component mount
+		setParticlesInit(() => initializeParticles); // Store the initialized function in state
+	}, []); // Only run once on component mount
 
-  return (
-    particlesInit && (
-      <Particles
-        init={particlesInit}
-        options={{
-          fpsLimit: 120,
-          interactivity: {
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: false,
-                mode: "repulse", // Changed from "repulse" to "attract"
-              }
-            },
-            modes: {
-              push: {
-                quantity: 4,
-              },
-              repulse: { // Changed from "repulse" to "attract"
-                distance: 150,
-                duration: 0.5,
-              },
-            },
-          },
-          particles: {
-            color: { value: "#ffffff" },
-            links: {
-              color: "#fe1d4c",
-              distance: 180,
-              enable: false,
-              opacity: 1,
-              width: 1,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outModes: "bounce",
-              random: true,
-              speed: speed, // default = 2
-              straight: true,
-            },
-            number: {
-              density: { enable: true },
-              value: density[0],
-              max: density[1],
-            },
-            opacity: {
-              value: 0.7,
-            },
-            shape: {
-              type: "image",
-              image: {
-                src: imageSrc, // Adjust this path to your image
-                width: 200,
-                height: 200,
-              },
-            },
-            size: {
-              value: { min: imageSize[0], max: imageSize[1] },
-            },
-          },
-          detectRetina: true,
-        }}
-      />
-    )
-  );
+	return (
+	particlesInit && (
+		<Particles
+			init={particlesInit}
+			options={{
+				fpsLimit: 120,
+				interactivity: {
+					events: {
+						onClick: {
+							enable: true,
+							mode: "push",
+						},
+						onHover: {
+							enable: false,
+							mode: "repulse", // Changed from "repulse" to "attract"
+						}
+					},
+					modes: {
+						push: {
+							quantity: 4,
+						},
+						repulse: { // Changed from "repulse" to "attract"
+							distance: 150,
+							duration: 0.5,
+						},
+					},
+				},
+				particles: {
+					color: { value: "#ffffff" },
+					links: {
+						color: "#fe1d4c",
+						distance: 180,
+						enable: false,
+						opacity: 1,
+						width: 1,
+					},
+					move: {
+						direction: "none",
+						enable: true,
+						outModes: "bounce",
+						random: true,
+						speed: speed, // default = 2
+						straight: true,
+					},
+					number: {
+						density: { enable: true },
+						value: density[0],
+						max: density[1],
+					},
+					opacity: {
+						value: 0.7,
+					},
+					shape: {
+						type: "image",
+						image: {
+							src: imageSrc, // Adjust this path to your image
+							width: 200,
+							height: 200,
+						},
+					},
+					size: {
+						value: { min: imageSize[0], max: imageSize[1] },
+					},
+				},
+				detectRetina: true,
+			}}
+		/>
+	)
+	);
 }

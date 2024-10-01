@@ -1,32 +1,32 @@
 .page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+	--gray-rgb: 0, 0, 0;
+	--gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+	--gray-alpha-100: rgba(var(--gray-rgb), 0.05);
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  background: linear-gradient(to bottom, red, black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh; 
-  width: 100vw; 
-  font-family: var(--font-geist-sans);
-  
+	--button-primary-hover: #383838;
+	--button-secondary-hover: #f2f2f2;
+	background: linear-gradient(to bottom, red, black);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	font-family: var(--font-geist-sans);
+
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
-  margin-top: auto;
-  
+	display: flex;
+	flex-direction: column;
+	margin-top: auto;
+
 }
 
 .footer {
-  display: flex;
-  flex-direction: row;
-  margin-top: auto;
-  margin-bottom: auto;
-  gap: 40px;
+	display: flex;
+	flex-direction: row;
+	margin-top: auto;
+	margin-bottom: auto;
+	gap: 40px;
 }
