@@ -11,7 +11,13 @@ import styles from './page.module.scss';
 export default function Home() {
   return (
     <div className={styles.page}> 
-        <ParticlesBackground />
+        <ParticlesBackground 
+            imageSrc='/images/logo.svg'
+            imageSize={[7,10]}
+            density={[20,40]}
+            click={true}
+            speed={2}
+        />
         <div className={styles.main} style={{ zIndex: 10 }}>
             <Logo
             width={400}

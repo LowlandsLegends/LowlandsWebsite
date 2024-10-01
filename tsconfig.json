@@ -19,7 +19,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@images/*": ["src/app/images/*"],
+      "@images/*": ["public/images/*"],
       "@components/*": ["src/app/components/*"]
     },
     "allowSyntheticDefaultImports": true

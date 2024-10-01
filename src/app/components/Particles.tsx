@@ -1,114 +1,113 @@
-// components/ParticlesBackground.tsx
 'use client';
-import { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import {
-  type Container,
-  type ISourceOptions,
-  MoveDirection,
-  OutMode,
-} from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim"; 
-import React from "react";
 
-const ParticlesBackground = () => {
-  const [init, setInit] = useState(false);
+import React, { useEffect, useState } from "react";
+import Particles from "react-tsparticles";
+import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadBaseMover } from "tsparticles-move-base";
+import { loadSizeUpdater } from "tsparticles-updater-size";
+import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadImageShape } from "tsparticles-shape-image";
+import { loadExternalPushInteraction } from "tsparticles-interaction-external-push";
+import { loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
+import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
+import { Engine } from "tsparticles-engine";
+
+interface ParticlesBackgroundProps {
+  imageSrc: string;
+  imageSize: Array<number>; // min[0], max[1]
+  density: Array<number>; // min[0], max[1]
+  speed: number;
+  click: boolean;
+}
+
+export default function ParticlesBackground({imageSrc, imageSize, density, click=true, speed=2}: ParticlesBackgroundProps) {
+  const [particlesInit, setParticlesInit] = useState<(engine: Engine) => Promise<void>>();
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
+    const initializeParticles = async (engine: Engine) => {
+      // Load required components for particles
+      await loadColorUpdater(engine);
+      await loadBaseMover(engine);
+      await loadSizeUpdater(engine);
+      await loadOpacityUpdater(engine);
+      await loadOutModesUpdater(engine);
+      await loadImageShape(engine);
+      await loadExternalPushInteraction(engine);
+      await loadExternalRepulseInteraction(engine);
+      await loadParticlesLinksInteraction(engine);
+    };
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
-  };
+    setParticlesInit(() => initializeParticles); // Store the initialized function in state
+  }, []); // Only run once on component mount
 
-  const options: ISourceOptions = useMemo(
-    () => ({
-      fpsLimit: 120,
-      interactivity: {
-        events: {
-          onClick: {
-            enable: true,
-            mode: "push",
-          },
-          onHover: {
-            enable: true,
-            mode: "repulse",
-          },
-        },
-        modes: {
-          push: {
-            quantity: 3,
-          },
-          repulse: {
-            distance: 150,
-            duration: 0.5,
-          },
-        },
-      },
-      particles: {
-        color: {
-          value: "#ffffff",
-        },
-        links: {
-          color: "#fe1d4c",
-          distance: 250,
-          enable: true,
-          opacity: 1,
-          width: 1.2,
-        },
-        move: {
-          direction: MoveDirection.none,
-          enable: true,
-          outModes: {
-            default: OutMode.out,
-          },
-          random: true,
-          speed: 5,
-          straight: false,
-        },
-        number: {
-          density: {
-            enable: true,
-          },
-          value: 50,
-          max: 100, // Set the maximum amount of particles here
-        },
-        opacity: {
-          value: 0.5,
-        },
-        shape: {
-          type: "image",
-          image: {
-            src: "../images/Logo.png", // Replace with the path to your image
-            width: 100,
-            height: 100,
-          },
-        },
-        size: {
-          value: { min: 1, max: 5 },
-        },
-      },
-      detectRetina: true,
-    }),
-    [],
-  );
-
-  if (init) {
-    return (
+  return (
+    particlesInit && (
       <Particles
-        id="tsparticles"
-        particlesLoaded={particlesLoaded}
-        options={options}
+        init={particlesInit}
+        options={{
+          fpsLimit: 120,
+          interactivity: {
+            events: {
+              onClick: {
+                enable: true,
+                mode: "push",
+              },
+              onHover: {
+                enable: false,
+                mode: "repulse", // Changed from "repulse" to "attract"
+              }
+            },
+            modes: {
+              push: {
+                quantity: 4,
+              },
+              repulse: { // Changed from "repulse" to "attract"
+                distance: 150,
+                duration: 0.5,
+              },
+            },
+          },
+          particles: {
+            color: { value: "#ffffff" },
+            links: {
+              color: "#fe1d4c",
+              distance: 180,
+              enable: false,
+              opacity: 1,
+              width: 1,
+            },
+            move: {
+              direction: "none",
+              enable: true,
+              outModes: "bounce",
+              random: true,
+              speed: speed, // default = 2
+              straight: true,
+            },
+            number: {
+              density: { enable: true },
+              value: density[0],
+              max: density[1],
+            },
+            opacity: {
+              value: 0.7,
+            },
+            shape: {
+              type: "image",
+              image: {
+                src: imageSrc, // Adjust this path to your image
+                width: 200,
+                height: 200,
+              },
+            },
+            size: {
+              value: { min: imageSize[0], max: imageSize[1] },
+            },
+          },
+          detectRetina: true,
+        }}
       />
-    );
-  }
-
-  return <></>;
-};
-
-export default ParticlesBackground;
+    )
+  );
+}
