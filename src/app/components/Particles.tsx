@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import Particles from "react-tsparticles";
+import styles from './Particles.module.scss'
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadSizeUpdater } from "tsparticles-updater-size";
@@ -44,11 +45,20 @@ export default function ParticlesBackground({ imageSrc, imageSize, density, spee
 		setParticlesInit(() => initializeParticles); // Store the initialized function in state
 	}, []); // Only run once on component mount
 
-	
+
 
 	return (
 		particlesInit && (
 			<Particles
+				style={{
+					position: 'absolute', // Position absolutely within the parent
+					top: 0,
+					left: 0,
+					width: '100%', // Fill the parent width
+					height: '100%', // Fill the parent height
+					zIndex: 10,
+					pointerEvents: 'none', // Ensure particles don't block clicks
+				}}
 				init={particlesInit}
 				options={{
 					fpsLimit: 120,
