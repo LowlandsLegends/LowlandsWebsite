@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center; // Centers items horizontally
+    align-items: center; 
     min-width: 300px;
     height: 40vh;
     border-radius: 8%;
@@ -15,7 +15,7 @@
     border-top-right-radius: 25px;
     width: 100%;
     display: flex;
-    justify-content: flex-start; // Aligns title in the center
+    justify-content: flex-start; 
     text-align: center;
     background-color: rgba(90, 7, 7, 0.35);
     padding: 5px 0;
@@ -38,10 +38,10 @@
 
 .footer {
     display: flex;
+    justify-content: space-between;
     margin-top: auto;
-    justify-content: space-between; // Distributes space between footer items
     width: 100%;
-    padding: 5px 10px; // Adds padding inside the footer for better spacing
+    padding: 5px 10px; 
     background-color: rgba(90, 7, 7, 0.35);
     border-bottom-left-radius: 22px;
     border-bottom-right-radius: 21px;
@@ -49,7 +49,7 @@
 
 .spanWrapper {
     display: flex;
-    justify-content: space-around; // Evenly spaces out the spans
-    align-items: center; // Centers items vertically
+    justify-content: space-around; 
+    align-items: center; 
     width: 100%;
 }
