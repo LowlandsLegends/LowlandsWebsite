@@ -7,6 +7,9 @@ const InfoPage: React.FC = () => {
 		<ServerCard
 			imageSrc='/images/Logo.svg'
 			href='/'
+			title='[EU/NL] ASA NEDERLAND SCORCHED EARTH'
+			ipAdress='127.0.0.1'
+			gameMode='PVP'
 		/>
 	);
 };
