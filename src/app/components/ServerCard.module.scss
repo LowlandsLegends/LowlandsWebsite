@@ -38,8 +38,8 @@
 }
 
 .footer {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     border-bottom-left-radius: 21px;
     border-bottom-right-radius: 21px;
     span {

@@ -10,9 +10,10 @@ interface ServerCardProps {
     href: string
     imageSrc: string;
     title:string;
+    playerCount:number;
 }
 
-export default function ServerCard({title, href, ipAdress, imageSrc, gameMode }: ServerCardProps) {
+export default function ServerCard({title, href, ipAdress, imageSrc, gameMode, playerCount }: ServerCardProps) {
     return (
         <div style={{ width: 1, height: 1 }} className={styles.cardWrapper}>
             <a href={href}>
@@ -47,7 +48,7 @@ export default function ServerCard({title, href, ipAdress, imageSrc, gameMode }:
                             {gameMode}
                         </span>
                         <span className={styles.text}>
-                            Online: 0
+                            Online: {playerCount}
                         </span>
                     </div>
                 </div>
