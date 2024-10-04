@@ -1,4 +1,5 @@
 // pages/about.tsx
+'use client';
 import React from 'react';
 import ServerCard from '@components/ServerCard'
 import styles from './page.module.scss'

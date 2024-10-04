@@ -1,7 +1,7 @@
 //TODO create server card
+'use client';
 import React from "react";
 import Image from "next/image";
-import ParticlesBackground from "./Particles";
 import styles from './ServerCard.module.scss';
 
 interface ServerCardProps {
@@ -27,8 +27,8 @@ export default function ServerCard({title, href, ipAdress, imageSrc, gameMode, p
                         <Image
                             src={imageSrc}
                             alt={imageSrc}
-                            width={200}
-                            height={200}
+                            width={300}
+                            height={300}
                         />
                     </div>
                     <div className={styles.footer}>
