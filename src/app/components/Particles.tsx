@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import Particles from "react-tsparticles";
-import styles from './Particles.module.scss'
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadSizeUpdater } from "tsparticles-updater-size";
