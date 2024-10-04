@@ -33,7 +33,9 @@ export default function Home() {
 				<a href="/app/server-info">
 					<Icon Component={AscendedLogo} alt="Ascended Logo" />
 				</a>
-				<Icon Component={ShopIcon} alt="Shop Icon" />
+				<a href="/app/shop">
+					<Icon Component={ShopIcon} alt="Shop Icon" />
+				</a>
 			</div>
 		</div>
 	);
