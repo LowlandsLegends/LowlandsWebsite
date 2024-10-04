@@ -69,14 +69,14 @@ export default function ParticlesBackground({ imageSrc, imageSize, density, spee
 							},
 							onHover: {
 								enable: hover,
-								mode: "repulse", // Changed from "repulse" to "attract"
+								mode: "repulse", 
 							}
 						},
 						modes: {
 							push: {
 								quantity: 4,
 							},
-							repulse: { // Changed from "repulse" to "attract"
+							repulse: { 
 								distance: 150,
 								duration: 0.5,
 							},
@@ -110,7 +110,7 @@ export default function ParticlesBackground({ imageSrc, imageSize, density, spee
 						shape: {
 							type: "image",
 							image: {
-								src: imageSrc, // Adjust this path to your image
+								src: imageSrc, 
 								width: 200,
 								height: 200,
 							},
