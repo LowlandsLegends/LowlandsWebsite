@@ -37,11 +37,9 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({ items }) => {
     };
 
     return (
-        <div className="bg-red-700 p-8 flex items-center justify-center h-screen">
-            <Button onClick={handleCheckout} disabled={loading} className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border-0 rounded-full px-6 py-3 transition-all duration-300">
-                {loading ? 'Loading...' : 'Checkout'}
-            </Button>
-        </div>
+        <Button onClick={handleCheckout} disabled={loading} className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border-0 rounded-full px-6 py-3 transition-all duration-300">
+            {loading ? 'Loading...' : 'Checkout'}
+        </Button>
     );
 };
 
