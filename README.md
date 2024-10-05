@@ -8,4 +8,4 @@ This project includes:
 - Collapsable Navbar
 - Particles Background using [TsParticles](https://particles.js.org/)
 
-This project uses [shadCN](https://shadcn.dev) and SASS for styling.
+This project uses [shadCN](ui.shadcn.com) and SASS for styling.
