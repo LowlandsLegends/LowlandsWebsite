@@ -10,4 +10,7 @@ This project includes:
 - Particles Background using [TsParticles](https://particles.js.org/)
 
 This project uses [shadCN](ui.shadcn.com) and SASS for styling.
+
+![homepage](./public/images/Homepage.png)
+
 **Work In Progress*
