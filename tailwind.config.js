@@ -16,6 +16,9 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		boxShadow: {
+			custom: "0 2px 20px rgba(0, 0, 0, 0.35)",
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -58,6 +61,7 @@ module.exports = {
   				'5': 'hsl(var(--chart-5))'
   			}
   		}
+		
   	}
   },
   plugins: ["tailwindcss-animate"],
