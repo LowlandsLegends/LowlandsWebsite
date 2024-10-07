@@ -11,7 +11,7 @@ export function Navbar() {
         <MountainIcon className="" />
         <span className="sr-only">ASANL.EU</span>
       </Link>
-      <div className="absolute left-1/2 transform -translate-x-1/2">
+      <div className="flex w-full justify-center">
         <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList>
             <NavigationMenuLink asChild>
