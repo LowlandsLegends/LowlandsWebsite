@@ -1,0 +1,30 @@
+.main {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10vh;
+    width: 100vw;
+    height: 90vh;
+}
+
+.CategorySelectWrapper {
+    margin-left: 20px;
+    @media(max-width: 726px){
+        display: none;
+    }
+}
+
+.ShopItemsWrapper {
+    width: 75%;
+    height: 100%;
+    margin-left: 50px;
+    margin-right: 50px;
+    @media(max-width: 726px) {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        margin: auto;
+        margin-left: 0.7rem;
+        margin-right: 0.7rem;
+    }
+}
