@@ -1,7 +1,9 @@
-'use client';
 import React from "react";
-import { CategorySelectorComponent } from "@/components/category-selector";
+import { CategorySelectorComponent } from "@components/CategorySelector";
+import { ShopItems, ShopItem } from "@components/ShopItems";
 import styles from './page.module.scss'
+import ShopClient from "../../components/ShopClient";
+import { getShopItemsData } from "./getShopItemsData";
 
 
 const categories = [
@@ -14,17 +16,10 @@ const categories = [
 ]
 
 
-const ShopPage:React.FC = () => {
-    const handleCategorySelect = (categoryId: string) => {
-        console.log("Selected category:", categoryId)
-        // Add your logic here to update the displayed products based on the selected category
-    }
-    return(
-        <div style={{height:'90%', display:'flex'}}>
-            <div className={styles.main} style={{marginLeft:"10px"}}>
-                <CategorySelectorComponent categories={categories} onSelect={handleCategorySelect} />
-            </div>
-        </div>
+const ShopPage: React.FC = async () => {
+    const shopItemsData = await getShopItemsData();
+    return (
+        <ShopClient shopItemsData={shopItemsData} categories={categories}  />
     );
 }
 export default ShopPage
