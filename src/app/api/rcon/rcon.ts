@@ -1,7 +1,5 @@
 import Rcon from 'rcon';
 
-
-
 export class RCONScheduler {
     //TODO: Create scheduler
 
