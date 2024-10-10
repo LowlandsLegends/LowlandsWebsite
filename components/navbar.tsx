@@ -7,32 +7,32 @@ import Logo from '@images/Logo.svg';
 export function Navbar() {
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
-      <Link href="/" className="mr-6 flex items-center bg-white bg-opacity-5 rounded-[30%] shadow-lg backdrop-blur-[30%]" prefetch={false}>
+      <Link href="/" className="mr-6 flex items-center bg-white bg-opacity-5 rounded-[30%] shadow-lg backdrop-blur-[80%]" prefetch={false}>
         <MountainIcon className="" />
         <span className="sr-only">ASANL.EU</span>
       </Link>
       <div className="absolute left-1/2 transform -translate-x-1/2">
         <NavigationMenu className="hidden lg:flex">
-          <NavigationMenuList>
-            <NavigationMenuLink asChild>
-              <Link
-                href="/app/server-info"
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                prefetch={false}
-              >
-                Server-Info
-              </Link>
-            </NavigationMenuLink>
-            <NavigationMenuLink asChild>
-              <Link
-                href="/app/shop"
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                prefetch={false}
-              >
-                Shop
-              </Link>
-            </NavigationMenuLink>
-          </NavigationMenuList>
+            <NavigationMenuList>
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/app/server-info"
+                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                  prefetch={false}
+                >
+                  Server-Info
+                </Link>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/app/shop"
+                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                  prefetch={false}
+                >
+                  Shop
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuList>
         </NavigationMenu>
       </div>
       <Sheet>
