@@ -14,9 +14,10 @@ interface ShopCartProps {
 	cartItems: CartItem[];
 	onRemoveItem: (itemId: string) => void;
 	onCheckout: () => void;
+	loading: boolean;
 }
 
-export function ShopCart({ cartItems, onRemoveItem, onCheckout }: ShopCartProps) {
+export function ShopCart({ cartItems, onRemoveItem, onCheckout, loading }: ShopCartProps) {
 	const totalItems = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
 	const totalPrice = cartItems.reduce(
 		(sum, item) => sum + item.price * (item.quantity || 1),
@@ -71,7 +72,7 @@ export function ShopCart({ cartItems, onRemoveItem, onCheckout }: ShopCartProps)
 									</div>
 								</div>
 								<Button className="w-full" onClick={onCheckout}>
-									Proceed to Checkout
+										{loading ? 'Loading...' : 'Proceed To Checkout'}
 								</Button>
 							</>
 						)}

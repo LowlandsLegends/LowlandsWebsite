@@ -101,6 +101,7 @@ const ShopClient: React.FC<ShopClientProps> = ({ shopItemsData, categories }) =>
                     cartItems={cartItems}
                     onRemoveItem={handleRemoveFromCart}
                     onCheckout={handleCheckout}
+                    loading={loading}
                 />
             </div>
         </div>
