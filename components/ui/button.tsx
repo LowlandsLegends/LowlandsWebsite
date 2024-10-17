@@ -19,7 +19,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        navbar: 'bg-white/5 hover:bg-white/15 text-dark backdrop-blur-md border-1 shadow-lg rounded-[30%]'
+        navbar: 'bg-white/5 hover:bg-white/15 text-dark backdrop-blur-md border-1 shadow-lg rounded-[30%]',
+        shoppingcart: 'rounded-lg bg-card-dark text-card-foreground shadow-custom backdrop-blur-sm'
       },
       size: {
         default: "",
