@@ -29,7 +29,7 @@
     "fs": "^0.0.1-security",
     "lucide-react": "^0.446.0",
     "next": "14.2.13",
-    "rcon": "^1.1.0",
+    "rcon-client": "^4.2.5",
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.1",
