@@ -1,6 +1,6 @@
 import React from "react";
 import ShopClient from "@components/ShopClient";
-import { getShopItemsData } from "./getShopItemsData";
+import { getShopItemsData } from "@lib/getShopItemsData";
 
 
 const categories = [
