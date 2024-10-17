@@ -1,8 +1,5 @@
 import React from "react";
-import { CategorySelectorComponent } from "@components/CategorySelector";
-import { ShopItems, ShopItem } from "@components/ShopItems";
-import styles from './page.module.scss'
-import ShopClient from "../../components/ShopClient";
+import ShopClient from "@components/ShopClient";
 import { getShopItemsData } from "./getShopItemsData";
 
 
@@ -19,7 +16,9 @@ const categories = [
 const ShopPage: React.FC = async () => {
     const shopItemsData = await getShopItemsData();
     return (
-        <ShopClient shopItemsData={shopItemsData} categories={categories}  />
+        <div>
+            <ShopClient shopItemsData={shopItemsData} categories={categories}  />
+        </div>
     );
 }
 export default ShopPage
