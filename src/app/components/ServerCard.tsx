@@ -10,7 +10,7 @@ interface ServerCardProps {
     href: string
     imageSrc: string;
     title:string;
-    playerCount:number;
+    playerCount:Promise<number> | number;
 }
 
 export default function ServerCard({title, href, ipAdress, imageSrc, gameMode, playerCount }: ServerCardProps) {
