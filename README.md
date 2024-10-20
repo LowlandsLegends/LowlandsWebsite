@@ -1,9 +1,10 @@
 # Webpage for my ARK Server
-```
- - Next.js *v14.2*, Using Typescript & App-router
- - This project uses [shadCN](ui.shadcn.com) and SASS for styling.
-```
+
 [Join Our Discord Server](https://discord.gg/46cJAE9z4h)
+```
+ - Next.js v14.2, Using Typescript & App-router
+ - This project uses shadCN and SASS for styling.
+```
 
 This project includes:
 - [Stripe](https://docs.stripe.com/api) payment processing
