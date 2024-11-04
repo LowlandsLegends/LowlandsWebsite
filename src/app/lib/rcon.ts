@@ -1,5 +1,6 @@
 // lib/rcon.ts
 import { Rcon } from 'rcon-client';
+import { supabaseAdmin } from './supabaseClient';
 
 export class RCONScheduler {
     index: number;
@@ -85,4 +86,52 @@ export class RCONScheduler {
             return 0;
         }
     }
+
+    async storePlayerCount(playerCount: number): Promise<void> {
+        const timestamp = new Date().toISOString();
+
+        const { error } = await supabaseAdmin.from('player_counts').insert([
+            {
+                server_index: this.index,
+                timestamp,
+                player_count: playerCount,
+            },
+        ]);
+
+        if (error) {
+            console.error('Error inserting player count into Supabase:', error);
+            throw error;
+        }
+
+        console.log('Player count stored in Supabase:', {
+            serverIndex: this.index,
+            timestamp,
+            playerCount,
+        });
+    }
+
+    static async getLast24HoursData(
+        serverIndex: number
+    ): Promise<Array<{ timestamp: string; playerCount: number }>> {
+        const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+
+        const { data, error } = await supabaseAdmin
+            .from('player_counts')
+            .select('timestamp, player_count')
+            .eq('server_index', serverIndex)
+            .gte('timestamp', since)
+            .order('timestamp', { ascending: true });
+
+        if (error) {
+            console.error('Error fetching player counts from Supabase:', error);
+            throw error;
+        }
+
+        return data!.map((row) => ({
+            timestamp: row.timestamp,
+            playerCount: row.player_count,
+        }));
+    }
+
+
 }
