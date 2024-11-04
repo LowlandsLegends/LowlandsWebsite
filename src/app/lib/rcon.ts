@@ -71,7 +71,9 @@ export class RCONScheduler {
     async getPlayerCount(): Promise<number> {
         try {
             const playerList: string = await this.executeRconCommand('listplayers');
-            console.log('Player List:', playerList);
+            
+
+            if (playerList.includes('No')) return 0;
 
             if (!playerList) return 0;
 
