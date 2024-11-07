@@ -28,6 +28,6 @@
     },
     "allowSyntheticDefaultImports": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/ParticlesComponent.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/ParticlesComponent.jsx", "src/app/server/cronJobs.mjs"],
   "exclude": ["node_modules"]
 }
