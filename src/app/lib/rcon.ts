@@ -134,6 +134,9 @@ export class RCONScheduler {
             playerCount: row.player_count,
         }));
     }
+}
 
-
+export interface playerCountData{
+    time: string
+    playerCount: number
 }
