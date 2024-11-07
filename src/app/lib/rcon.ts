@@ -44,7 +44,7 @@ export class RCONScheduler {
                 password: this.credentials.rcon_pw,
             });
 
-            console.log(`RCON Authenticated for server: ${server.name}`);
+            //console.log(`RCON Authenticated for server: ${server.name}`);
         } catch (error) {
             console.error(`Failed to connect to RCON for server: ${server.name}`, error);
             throw error;
@@ -59,7 +59,7 @@ export class RCONScheduler {
 
         try {
             const response = await this.rconClient.send(command);
-            console.log(`Command "${command}" executed successfully. Response: ${response}`);
+            //console.log(`Command "${command}" executed successfully. Response: ${response}`);
             return response;
         } catch (error) {
             console.error(`Error executing command "${command}":`, error);
@@ -81,7 +81,7 @@ export class RCONScheduler {
             const lines = playerList.split(/\r?\n/).filter(line => line.trim() !== '');
             const playerCount = lines.length;
 
-            console.log(`Player Count: ${playerCount}`);
+            //console.log(`Player Count: ${playerCount}`);
             return playerCount;
         } catch (error) {
             console.error('Failed to retrieve player list:', error);
