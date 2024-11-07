@@ -10,12 +10,12 @@ interface ServerInfoProps {
 	serverIp: string
 	gamemode: "pvp" | "pve"
 	playerCount: Promise<number> | number
-	isOnline: boolean
+	isOnline: Promise<boolean> | boolean
 	upTime: number
 	serverIndex: number
 }
 
-const StatusIndicator = ({ isOnline }: { isOnline: boolean }) => (
+const StatusIndicator = ({ isOnline }: { isOnline: Promise<boolean> | boolean }) => (
 	<div className={`w-3 h-3 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'}`} />
 )
 
@@ -24,7 +24,7 @@ export default function ServerInfoCard({
 	serverIp = "123.456.789.0",
 	gamemode = "pvp",
 	playerCount = 42,
-	isOnline = true,
+	isOnline,
 	upTime = 99,
 	serverIndex,
 }: ServerInfoProps) {
