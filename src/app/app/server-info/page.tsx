@@ -1,8 +1,8 @@
 // pages/about.tsx
 import React from 'react';
 import styles from './page.module.scss'
-import { RCONScheduler } from '@lib/rcon';
-import ServerInfoCard from '../../components/ServerInfoCard';
+import { RCONScheduler} from '@lib/rcon';
+import ServerInfoCard from '@components/ServerInfoCard';
 
 const InfoPage: React.FC = () => {
 
