@@ -1,9 +1,9 @@
 .main{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-left: 10px;
-    margin-right: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
     @media(max-width:768px){
         flex-direction: column;
         justify-content: center;
