@@ -203,6 +203,11 @@ url = ""
 # If enabled, the nonce check will be skipped. Required for local sign in with Google auth.
 skip_nonce_check = false
 
+[auth.external.discord]
+enabled = true
+client_id = "1301234102590247033"
+secret = "env(DISCORD_CLIENT_SECRET)"
+
 # Use Firebase Auth as a third-party provider alongside Supabase Auth.
 [auth.third_party.firebase]
 enabled = false
