@@ -1,6 +1,26 @@
 // app/api/player-count/[serverIndex]/route.ts
 import { NextResponse } from 'next/server';
-import { RCONScheduler } from '@lib/rcon';
+import { RCONScheduler, playerCountData } from '@lib/rcon';
+
+const latestPlayerdata = async (index: number): Promise<playerCountData> => {
+    const scheduler = new RCONScheduler(index);
+    await scheduler.connectRCON();
+    const playerCount = await scheduler.getPlayerCount();
+
+    // Format the current time to Amsterdam timezone
+    const timeLabel = new Date().toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hourCycle: 'h23',
+        timeZone: 'Europe/Amsterdam',
+    });
+
+    return {
+        time: timeLabel,
+        playerCount: playerCount,
+    };
+};
+
 
 export async function GET(
     request: Request,
@@ -18,7 +38,7 @@ export async function GET(
 
         // Create 6 time intervals over the last 24 hours
         const now = new Date();
-        const intervals = 6;
+        const intervals = 30;
         const intervalMs = (24 * 60 * 60 * 1000) / intervals; // Each interval is 4 hours
         const chartData = [];
 
@@ -38,10 +58,6 @@ export async function GET(
             if (dataPointsInInterval.length > 0) {
                 // Option 1: Use the latest player count in the interval
                 playerCount = dataPointsInInterval[dataPointsInInterval.length - 1].playerCount;
-                // Option 2: Use the average player count in the interval
-                // playerCount = Math.round(
-                //   dataPointsInInterval.reduce((sum, dp) => sum + dp.playerCount, 0) / dataPointsInInterval.length
-                // );
             }
 
             // Format the time label (e.g., the midpoint of the interval)
@@ -57,8 +73,7 @@ export async function GET(
                 playerCount: playerCount,
             });
         }
-
-        console.log(chartData);
+        chartData.push(await latestPlayerdata(serverIndex));
         return NextResponse.json(chartData);
     } catch (error) {
         console.error('Error fetching player count data:', error);
