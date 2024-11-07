@@ -2,8 +2,11 @@
   "name": "my-ark-server",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:next": "next dev",
+    "dev:cron": "node --loader ts-node/esm src/app/server/cronJobs.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -28,6 +31,7 @@
     "@tsparticles/slim": "^3.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "fs": "^0.0.1-security",
     "lucide-react": "^0.446.0",
     "next": "14.2.13",
@@ -41,6 +45,7 @@
     "stripe": "^17.1.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "ts-node": "^10.9.2",
     "tsparticles-engine": "^2.12.0",
     "tsparticles-interaction-external-push": "^2.12.0",
     "tsparticles-interaction-external-repulse": "^2.12.0",
@@ -55,6 +60,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/node-cron": "^3.0.11",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
