@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { ShopItems, ShopItem } from './ShopItems';
-import { CategorySelectorComponent } from './CategorySelector';
+import { CategorySelectorResponsive } from './CategorySelectorResponsive'; // Use the responsive selector
 import styles from './ShopClient.module.scss';
 import { ShopCart } from './ShopCart';
 import { loadStripe } from '@stripe/stripe-js';
@@ -16,7 +16,6 @@ interface ShopClientProps {
 export interface CartItem extends ShopItem {
     quantity: number;
 }
-
 
 const ShopClient: React.FC<ShopClientProps> = ({ shopItemsData, categories }) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -35,15 +34,12 @@ const ShopClient: React.FC<ShopClientProps> = ({ shopItemsData, categories }) =>
 
     const handleAddToCart = (item: ShopItem) => {
         setCartItems((prevItems) => {
-            // Check if the item is already in the cart
             const existingItem = prevItems.find((i) => i.id === item.id);
             if (existingItem) {
-                // Update quantity
                 return prevItems.map((i) =>
-                    i.id === item.id ? { ...i, quantity: (i.quantity || 1) + 1 } : i
+                    i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
                 );
             } else {
-                // Add new item with quantity 1
                 return [...prevItems, { ...item, quantity: 1 }];
             }
         });
@@ -55,23 +51,19 @@ const ShopClient: React.FC<ShopClientProps> = ({ shopItemsData, categories }) =>
 
     const handleCheckout = async () => {
         setLoading(true);
-        // Call the backend to create a Checkout session
         const res = await fetch('/api/stripe/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({items: cartItems}),
+            body: JSON.stringify({ items: cartItems }),
         });
 
         const { sessionId } = await res.json();
-
-        // Redirect to Stripe Checkout
         const stripe = await stripePromise;
         if (stripe) {
             stripe.redirectToCheckout({ sessionId });
         } else {
             console.error('Stripe.js has not loaded yet.');
         }
-        console.log(cartItems)
         setLoading(false);
     };
 
@@ -82,19 +74,15 @@ const ShopClient: React.FC<ShopClientProps> = ({ shopItemsData, categories }) =>
     return (
         <div className={styles.main}>
             <div className={styles.CategorySelectWrapper}>
-                <div>
-                    <CategorySelectorComponent
-                        categories={categories}
-                        selectedCategory={selectedCategory}
-                        onSelect={handleCategorySelect}
-                        onReset={handleCategoryReset}
-                    />
-                </div>
+                <CategorySelectorResponsive
+                    categories={categories}
+                    selectedCategory={selectedCategory}
+                    onSelect={handleCategorySelect}
+                    onReset={handleCategoryReset}
+                />
             </div>
             <div className={styles.ShopItemsWrapper}>
-                <div className="w-full h-auto text-card-foreground p-4 rounded-lg shadow-custom backdrop-blur-sm">
-                    <ShopItems shopItems={filteredItems} onAddToCart={handleAddToCart} />
-                </div>
+                <ShopItems shopItems={filteredItems} onAddToCart={handleAddToCart} />
             </div>
             <div className={styles.ShopCart}>
                 <ShopCart
