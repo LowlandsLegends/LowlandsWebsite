@@ -3,11 +3,6 @@ import { NextResponse } from 'next/server';
 import { RCONScheduler, playerCountData } from '@lib/rcon';
 
 const latestPlayerdata = async (index: number): Promise<playerCountData> => {
-    const scheduler = new RCONScheduler(index);
-    await scheduler.connectRCON();
-    const playerCount = await scheduler.getPlayerCount();
-
-    // Format the current time to Amsterdam timezone
     const timeLabel = new Date().toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit',
@@ -15,10 +10,22 @@ const latestPlayerdata = async (index: number): Promise<playerCountData> => {
         timeZone: 'Europe/Amsterdam',
     });
 
-    return {
-        time: timeLabel,
-        playerCount: playerCount,
-    };
+    try {
+        const scheduler = new RCONScheduler(index);
+        await scheduler.connectRCON();
+        const playerCount = await scheduler.getPlayerCount();
+        return {
+            time: timeLabel,
+            playerCount: playerCount,
+        };
+    } catch (error) {
+        console.log(error)
+        return {
+            time: timeLabel,
+            playerCount: 0
+        }
+    }
+
 };
 
 
