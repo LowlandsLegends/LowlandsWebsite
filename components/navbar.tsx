@@ -1,10 +1,15 @@
+'use client';
 import Link from "next/link"
 import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import Logo from '@images/Logo.svg';
+import { useState } from "react";
 
 export function Navbar() {
+	const [isSheetOpen, setSheetOpen] = useState(false);
+
+	const toggleSheet = () => setSheetOpen(!isSheetOpen);
 	return (
 		<header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
 			<Link href="/" className="mr-6 flex items-center bg-white bg-opacity-5 rounded-[30%] shadow-lg backdrop-blur-[80%]" prefetch={false}>
@@ -44,7 +49,7 @@ export function Navbar() {
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>
-			<Sheet>
+			<Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
 				<SheetTrigger asChild>
 					<Button variant="navbar" size="icon" className="ml-auto lg:hidden">
 						<MenuIcon className="h-6 w-6" />
@@ -53,10 +58,10 @@ export function Navbar() {
 				</SheetTrigger>
 				<SheetContent side="left">
 					<div className="grid gap-2 py-6">
-						<Link href="/app/server-info" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
+						<Link href="/app/server-info" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false} onClick={toggleSheet}>
 							Server-Info
 						</Link>
-						<Link href="/app/shop" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
+						<Link href="/app/shop" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false} onClick={toggleSheet}>
 							Shop
 						</Link>
 					</div>
