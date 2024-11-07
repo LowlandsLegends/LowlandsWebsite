@@ -12,6 +12,8 @@ interface LineChartComponentProps {
     serverIndex: number;
 }
 
+
+
 export default function LineChartComponent({ serverIndex }: LineChartComponentProps) {
     const [data, setData] = useState<ChartDataPoint[]>([]);
 
@@ -28,12 +30,10 @@ export default function LineChartComponent({ serverIndex }: LineChartComponentPr
 
         fetchData();
 
-        // Optionally, refresh data periodically
         const interval = setInterval(fetchData, 60000); // Every minute
 
         return () => clearInterval(interval); // Clean up on unmount
     }, [serverIndex]);
-    console.log(data)
     {
         return (
             <ResponsiveContainer width="100%" height="100%">
@@ -43,15 +43,20 @@ export default function LineChartComponent({ serverIndex }: LineChartComponentPr
                     data={data}
                     margin={{
                         top: 10,
-                        right: 30,
+                        right: 10,
                         left: 30,
                         bottom: 10,
                     }}
                 >
-
                     <YAxis dataKey='playerCount' width={0.5} stroke='#ffffff' tick={{ fontSize: 10, fill: '#ffffff' }} />
-                    <XAxis dataKey='time' height={12} stroke='#ffffff' tick={{ fontSize: 10, fill: '#ffffff' }} />
-                    <Line type="natural" dataKey="playerCount" stroke="#ffffff" />
+                    <XAxis dataKey='time' height={12} width={100} stroke='#ffffff' tick={{ fontSize: 10, fill: '#ffffff' }} />
+                    <Line
+                        type="monotone"
+                        dataKey="playerCount"
+                        stroke="#ffffff"
+                        dot={false}
+                        width={100}
+                    />
                 </LineChart>
             </ResponsiveContainer>
         );
