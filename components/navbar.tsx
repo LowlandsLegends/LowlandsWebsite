@@ -4,16 +4,28 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/compon
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import Logo from '@images/Logo.svg';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Navbar() {
 	const [isSheetOpen, setSheetOpen] = useState(false);
+	const [isScrolled, setIsScrolled] = useState(false);
 
 	const toggleSheet = () => setSheetOpen(!isSheetOpen);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsScrolled(window.scrollY > 0);
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
 	return (
-		<header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
-			<Link href="/" className="mr-6 flex items-center bg-white bg-opacity-5 rounded-[30%] shadow-lg backdrop-blur-[80%]" prefetch={false}>
-				<MountainIcon className="" />
+		<header className={`flex h-20 w-full shrink-0 items-center px-4 md:px-6 fixed z-10 transition-backdrop-blur duration-500 ${
+			isScrolled ? 'backdrop-blur-sm rounded-md shadow-md' : 'backdrop-blur-none'
+		}`}>
+			<Link href="/" className="mr-6 flex items-center bg-white bg-opacity-5 rounded-[30%] shadow-lg backdrop-blur-[80%] p-[]" prefetch={false}>
+				<Icon className="" />
 				<span className="sr-only">ASANL.EU</span>
 			</Link>
 			<div className="absolute left-1/2 transform -translate-x-1/2">
@@ -95,7 +107,7 @@ function MenuIcon(props: any) {
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function MountainIcon(props: any) {
+function Icon(props: any) {
 	return (
 		<Logo
 			{...props}

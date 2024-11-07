@@ -18,6 +18,7 @@ export default function RootLayout({
 				hover={false}
 			/>
 			<Navbar />
+			<div className='h-20 w-full' ></div>
 			{children}
 		</div>
 	)
