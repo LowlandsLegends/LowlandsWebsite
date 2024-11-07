@@ -26,7 +26,7 @@ export default function ServerInfoCard({
 	playerCount = 42,
 	isOnline = true,
 	upTime = 99,
-	serverIndex
+	serverIndex,
 }: ServerInfoProps) {
 	return (
 		<Card className="w-full max-w-md overflow-hidden p-1">
@@ -38,7 +38,7 @@ export default function ServerInfoCard({
 			</CardHeader>
 			<CardContent className="pt-4">
 				<div className="aspect-video w-full mb-4 overflow-hidden rounded-md">
-					<LineChartComponent serverIndex={serverIndex} />
+					<LineChartComponent serverIndex={serverIndex}/>
 				</div>
 				<div className="grid grid-cols-2 gap-4">
 					<div className="flex items-center">
