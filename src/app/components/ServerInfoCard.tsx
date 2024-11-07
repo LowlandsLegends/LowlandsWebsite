@@ -32,22 +32,22 @@ export default function ServerInfoCard({
 		<Card className="w-full max-w-md overflow-hidden p-1">
 			<CardHeader className="pb-0">
 				<div className="flex items-center justify-between">
-					<CardTitle className="text-2xl font-bold">{serverName}</CardTitle>
+					<CardTitle className="text-xl font-bold">{serverName}</CardTitle>
 					<StatusIndicator isOnline={isOnline} />
 				</div>
 			</CardHeader>
-			<CardContent className="pt-4">
-				<div className="aspect-video w-full mb-4 overflow-hidden rounded-md">
+			<CardContent className="pt-4 max-h-[40vh]">
+				<div className="aspect-video w-full mb-4 overflow-hidden rounded-md max-h-[20vh]">
 					<LineChartComponent serverIndex={serverIndex}/>
 				</div>
 				<div className="grid grid-cols-2 gap-4">
-					<div className="flex items-center">
-						<div className="mr-2 text-muted-foreground text-white">IP:</div>
+					<div className="flex items-center text-white">
+						<div className="mr-2 text-white">IP:</div>
 						<div className="font-medium">{serverIp}</div>
 					</div>
-					<div className="flex items-center">
-						<div className="mr-2 text-muted-foreground text-white">Gamemode:</div>
-						<div className="font-medium flex items-center">
+					<div className="flex items-center text-white">
+						<div className="mr-2 text-white">Gamemode:</div>
+						<div className="font-small flex items-center">
 							{gamemode === "pvp" ? (
 								<Swords className="w-4 h-4 mr-1 " />
 							) : (
@@ -56,16 +56,16 @@ export default function ServerInfoCard({
 							{gamemode.toUpperCase()}
 						</div>
 					</div>
-					<div className="flex items-center">
-						<Users className="w-5 h-5 mr-2 text-muted-foreground text-white" />
-						<div className="font-medium">{playerCount} players online</div>
-					</div>
-					<div className="flex items-center">
-						<div className="mr-2 text-muted-foreground text-white">Uptime: </div>
-						<div className="flex col-span-1 items-center">
-							<Graph className="w-5 h-5 mr-2 text-muted-foreground" /> {upTime}%
+						<div className="flex items-center text-white">
+							<Users className="w-5 h-5 mr-2 text-white" />
+							<div className="font-small">{playerCount} players online</div>
 						</div>
-					</div>
+						<div className="flex items-center text-white">
+							<div className="mr-2 text-white">Uptime: </div>
+							<div className="flex col-span-1 items-center">
+								<Graph className="w-5 h-5 mr-2 " /> {upTime}%
+							</div>
+						</div>
 				</div>
 			</CardContent>
 		</Card>
