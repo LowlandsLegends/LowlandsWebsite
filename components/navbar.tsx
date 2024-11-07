@@ -5,6 +5,7 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import Logo from '@images/Logo.svg';
 import { useState, useEffect } from "react";
+import { signOut } from 'next-auth/react';
 
 export function Navbar() {
 	const [isSheetOpen, setSheetOpen] = useState(false);
@@ -51,12 +52,20 @@ export function Navbar() {
 						</NavigationMenuLink>
 						<NavigationMenuLink asChild>
 							<Link
-								href="/app/auth"
+								href="/auth"
 								className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
 								prefetch={false}
 							>
 								Login
 							</Link>
+						</NavigationMenuLink>
+						<NavigationMenuLink asChild>
+							<Button
+								onClick={() => signOut()}
+								className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+							>
+								Logout
+							</Button>
 						</NavigationMenuLink>
 					</NavigationMenuList>
 				</NavigationMenu>
