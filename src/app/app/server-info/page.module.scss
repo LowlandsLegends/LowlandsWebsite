@@ -1,12 +1,27 @@
-.main{
+.main {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    @media(max-width:768px){
-        flex-direction: column;
+
+    &>* {
+        flex: 0 0 50%;
+    }
+
+    width: 70vw;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media(max-width:1280px) {
         justify-content: center;
         align-items: center;
+
+        &>* {
+            flex: 0 0 100%;
+        }
+
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
