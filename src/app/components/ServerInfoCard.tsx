@@ -10,8 +10,6 @@ interface ServerInfoProps {
 	serverName: string
 	serverIp: string
 	gamemode: "pvp" | "pve"
-	playerCount: Promise<number> | number
-	isOnline: Promise<boolean> | boolean
 	upTime: number
 	serverIndex: number
 }
@@ -21,28 +19,37 @@ export interface ChartDataPoint {
 	playerCount: number;
 }
 
-const StatusIndicator = ({ isOnline }: { isOnline: Promise<boolean> | boolean }) => (
-	<div className={`w-3 h-3 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'}`} />
+const StatusIndicator = ({ isOnline, isLoading }: { isOnline: boolean | Promise<boolean>; isLoading: boolean }) => (
+	<div
+		className={`w-3 h-3 rounded-full ${
+			isLoading ? 'bg-orange-500' : isOnline ? 'bg-green-500' : 'bg-red-500'
+		}`}
+	/>
 )
 
 export default function ServerInfoCard({
 	serverName = "Awesome Server",
 	serverIp = "123.456.789.0",
 	gamemode = "pvp",
-	isOnline,
 	upTime = 99,
 	serverIndex,
 }: ServerInfoProps) {
 	const [data, setData] = useState<ChartDataPoint[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isOnline, setIsOnline] = useState(false);
 
 	useEffect(() => {
 		async function fetchData() {
 			try {
 				const response = await fetch(`/api/player-count/${serverIndex}`);
+				if (response.status === 500) {
+					setIsOnline(false);
+					return;
+				}
 				const result = await response.json();
 				setData(result);
-				setIsLoading(false)
+				setIsLoading(false);
+				setIsOnline(true);
 			} catch (error) {
 				console.error('Error fetching player count data:', error);
 			}
@@ -59,7 +66,7 @@ export default function ServerInfoCard({
 			<CardHeader className="pb-0">
 				<div className="flex items-center justify-between">
 					<CardTitle className="text-xl font-bold">{serverName}</CardTitle>
-					<StatusIndicator isOnline={isOnline} />
+					<StatusIndicator isOnline={isOnline} isLoading={isLoading} />
 				</div>
 			</CardHeader>
 			<CardContent className="pt-4 h-fit">
