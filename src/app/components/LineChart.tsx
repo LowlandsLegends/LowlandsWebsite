@@ -1,38 +1,22 @@
 'use client';
 import React from 'react';
 import { LineChart, XAxis, YAxis, Line, ResponsiveContainer, Tooltip } from 'recharts';
-import { useEffect, useState } from 'react';
+import { ChartDataPoint } from './ServerInfoCard';
 
-interface ChartDataPoint {
-    time: string;
-    playerCount: number;
-}
+
 
 interface LineChartComponentProps {
     serverIndex: number;
+    data: ChartDataPoint[];
+    isLoading: boolean
 }
 
 
 
-export default function LineChartComponent({ serverIndex }: LineChartComponentProps) {
-    const [data, setData] = useState<ChartDataPoint[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+export default function LineChartComponent({ data, isLoading }: LineChartComponentProps) {
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await fetch(`/api/player-count/${serverIndex}`);
-                const result = await response.json();
-                setData(result);
-                setIsLoading(false)
-            } catch (error) {
-                console.error('Error fetching player count data:', error);
-            }
-        }
 
-        fetchData();
-    }, [serverIndex]);
-    
+
     if (isLoading) {
         return (
             <div className="flex justify-center items-center w-[100%] h-[100%]">
@@ -69,9 +53,9 @@ export default function LineChartComponent({ serverIndex }: LineChartComponentPr
                         animationEasing="linear"
                         strokeWidth={2}
                     />
-                    <Tooltip 
-                        formatter={(value) => [`${value}`, `Player Count`]} 
-                        contentStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: '#fff' }} 
+                    <Tooltip
+                        formatter={(value) => [`${value}`, `Player Count`]}
+                        contentStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: '#fff' }}
                     />
                 </LineChart>
             </ResponsiveContainer>
