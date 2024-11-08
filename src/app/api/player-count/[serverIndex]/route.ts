@@ -85,7 +85,7 @@ export async function GET(
             await new RCONScheduler(serverIndex).connectRCON();
             return NextResponse.json( chartData , { status: 200 });
         } catch {
-            return NextResponse.json( chartData , { status: 400 });
+            return NextResponse.json( chartData , { status: 503 });
         }
     } catch (error) {
         console.error('Error fetching player count data:', error);

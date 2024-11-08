@@ -45,7 +45,7 @@ export default function ServerInfoCard({
 				const result = await response.json();
 				setData(result);
 				setIsLoading(false);
-				if (response.status === 400) {
+				if (response.status === 503) {
 					setIsOnline(false);
 					return;
 				} else {
