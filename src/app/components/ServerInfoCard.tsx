@@ -72,7 +72,7 @@ export default function ServerInfoCard({
 						<div className="font-small">{serverIp}</div>
 					</div>
 					<div className="flex items-center text-white">
-						<div className="mr-2 text-white pl-3">Gamemode:</div>
+						<div className="mr-1 text-white pl-3">Gamemode:</div>
 						<div className="font-small flex items-center">
 							{gamemode === "pvp" ? (
 								<Swords className="w-4 h-4 mr-1 " />
@@ -87,7 +87,7 @@ export default function ServerInfoCard({
 						{Array.isArray(data) && data.length > 0 ? data[data.length - 1].playerCount : 0} players online
 					</div>
 					<div className="flex items-center text-white">
-						<div className="mr-2 text-white pl-3">Uptime: </div>
+						<div className="mr-1 text-white pl-3">Uptime: </div>
 						<div className="flex col-span-1 items-center">
 							<Graph className="w-5 h-5 mr-2 " /> {upTime}%
 						</div>
