@@ -81,7 +81,12 @@ export async function GET(
             });
         }
         chartData.push(await latestPlayerdata(serverIndex));
-        return NextResponse.json(chartData);
+        try{
+            await new RCONScheduler(serverIndex).connectRCON();
+            return NextResponse.json( chartData , { status: 200 });
+        } catch {
+            return NextResponse.json( chartData , { status: 400 });
+        }
     } catch (error) {
         console.error('Error fetching player count data:', error);
         return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });

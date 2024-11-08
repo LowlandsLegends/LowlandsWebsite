@@ -22,7 +22,7 @@ export interface ChartDataPoint {
 const StatusIndicator = ({ isOnline, isLoading }: { isOnline: boolean | Promise<boolean>; isLoading: boolean }) => (
 	<div
 		className={`w-3 h-3 rounded-full ${
-			isLoading ? 'bg-orange-500' : isOnline ? 'bg-green-500' : 'bg-red-500'
+			isLoading ? 'bg-orange-500' : isOnline ? 'bg-green-500' : 'bg-red-900'
 		}`}
 	/>
 )
@@ -42,14 +42,15 @@ export default function ServerInfoCard({
 		async function fetchData() {
 			try {
 				const response = await fetch(`/api/player-count/${serverIndex}`);
-				if (response.status === 500) {
-					setIsOnline(false);
-					return;
-				}
 				const result = await response.json();
 				setData(result);
 				setIsLoading(false);
-				setIsOnline(true);
+				if (response.status === 400) {
+					setIsOnline(false);
+					return;
+				} else {
+					setIsOnline(true);
+				}
 			} catch (error) {
 				console.error('Error fetching player count data:', error);
 			}
