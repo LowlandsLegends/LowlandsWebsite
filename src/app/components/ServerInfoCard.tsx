@@ -66,7 +66,7 @@ export default function ServerInfoCard({
 				<div className="aspect-video w-full mb-3 overflow-hidden rounded-md h-[150px]">
 					<LineChartComponent serverIndex={serverIndex} data={data} isLoading={isLoading} />
 				</div>
-				<div className="grid grid-cols-2 gap-4 mr-0 ml-5 pb-0 mb-0 justify-center items-center">
+				<div className="grid grid-cols-2 gap-4 mr-0 p-1 pb-0 mb-0 justify-center items-center">
 					<div className="flex items-center text-white">
 						<div className="mr-1 text-white">IP:</div>
 						<div className="font-medium">{serverIp}</div>
