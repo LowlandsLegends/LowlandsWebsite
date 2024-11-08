@@ -73,12 +73,12 @@ export default function ServerInfoCard({
 				</div>
 				<div className="grid grid-cols-2 gap-4 mr-0 pb-0 mb-0 justify-center items-center">
 					<div className="flex items-center text-white">
-						<div className=" text-white mr-1">IP:</div>
-						<div className="font-small">{serverIp}</div>
+						<div className="text-white mr-1">IP:</div>
+						<div className="text-sm md:text-base">{serverIp}</div>
 					</div>
 					<div className="flex items-center text-white">
 						<div className="mr-1 text-white pl-5">Gamemode:</div>
-						<div className="font-small flex items-center">
+						<div className="text-sm md:text-base flex items-center">
 							{gamemode === "pvp" ? (
 								<Swords className="w-4 h-4 mr-1 " />
 							) : (
@@ -93,7 +93,7 @@ export default function ServerInfoCard({
 					</div>
 					<div className="flex items-center text-white">
 						<div className="mr-1 text-white pl-5">Uptime: </div>
-						<div className="flex col-span-1 items-center">
+						<div className="flex col-span-1 items-center text-sm md:text-base">
 							<Graph className="w-5 h-5 mr-2 " /> {upTime}%
 						</div>
 					</div>
