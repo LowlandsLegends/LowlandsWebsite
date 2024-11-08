@@ -5,6 +5,7 @@ import { Users, Swords, Shield } from "lucide-react"
 import LineChartComponent from "./LineChart"
 import Graph from '@images/Graph.svg'
 import useSWR from 'swr'
+import { useEffect, useState } from "react"
 
 interface ServerInfoProps {
 	serverName: string
@@ -21,13 +22,13 @@ export interface ChartDataPoint {
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
-const StatusIndicator = ({ isOnline, isLoading }: { isOnline: boolean | unknown; isLoading: boolean }) => (
+const StatusIndicator = ({ isOnline, isLoading }: { isOnline: boolean; isLoading: boolean }) => (
 	<div
-		className={`w-3 h-3 rounded-full ${isLoading || typeof isOnline !== 'boolean'
-			? 'bg-orange-500'
-			: isOnline
-				? 'bg-green-500'
-				: 'bg-red-900'
+		className={`w-3 h-3 rounded-full ${isLoading
+				? 'bg-orange-500'
+				: isOnline
+					? 'bg-green-500'
+					: 'bg-red-900'
 			}`}
 	/>
 )
@@ -44,19 +45,26 @@ export default function ServerInfoCard({
 		fetcher,
 		{
 			refreshInterval: 300000, // 5 minutes in milliseconds
-			revalidateOnFocus: false, // Prevent revalidation on focus
+			revalidateOnFocus: true,
 		}
 	)
 
-	const isOnline = !error && data && data.length > 0
+	const [isOnline, setIsOnline] = useState(false)
 
+	useEffect(() => {
+		if (!error && data && data.length > 0) {
+			setIsOnline(true)
+		} else {
+			setIsOnline(false)
+		}
+	}, [data, error])
 
 	return (
 		<Card className="w-full max-w-md overflow-hidden p-1">
 			<CardHeader className="pb-0">
 				<div className="flex items-center justify-between">
 					<CardTitle className="text-xl font-bold">{serverName}</CardTitle>
-					<StatusIndicator isOnline={isOnline!} isLoading={isValidating} />
+					<StatusIndicator isOnline={isOnline} isLoading={isValidating} />
 				</div>
 			</CardHeader>
 			<CardContent className="pt-4 h-fit">
