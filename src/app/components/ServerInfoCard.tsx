@@ -24,10 +24,10 @@ const fetcher = (url: string) => fetch(url).then(res => res.json())
 const StatusIndicator = ({ isOnline, isLoading }: { isOnline: boolean | unknown; isLoading: boolean }) => (
 	<div
 		className={`w-3 h-3 rounded-full ${isLoading || typeof isOnline !== 'boolean'
-				? 'bg-orange-500'
-				: isOnline
-					? 'bg-green-500'
-					: 'bg-red-900'
+			? 'bg-orange-500'
+			: isOnline
+				? 'bg-green-500'
+				: 'bg-red-900'
 			}`}
 	/>
 )
