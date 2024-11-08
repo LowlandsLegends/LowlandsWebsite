@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './page.module.scss'
 import { RCONScheduler } from '@lib/rcon';
 import ServerInfoCard from '@components/ServerInfoCard';
-import { error } from 'node:console';
 
 const InfoPage: React.FC = async () => {
 
