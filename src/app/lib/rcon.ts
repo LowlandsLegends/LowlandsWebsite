@@ -71,7 +71,7 @@ export class RCONScheduler {
     async getPlayerCount(): Promise<number> {
         try {
             const playerList: string = await this.executeRconCommand('listplayers');
-            
+
 
             if (playerList.includes('No')) return 0;
 
@@ -112,9 +112,7 @@ export class RCONScheduler {
         });
     }
 
-    static async getLast24HoursData(
-        serverIndex: number
-    ): Promise<Array<{ timestamp: string; playerCount: number }>> {
+    static async getLast24HoursData(serverIndex: number): Promise<Array<{ timestamp: string; playerCount: number }>> {
         const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
         const { data, error } = await supabaseAdmin
@@ -136,7 +134,7 @@ export class RCONScheduler {
     }
 }
 
-export interface playerCountData{
+export interface playerCountData {
     time: string
     playerCount: number
 }
