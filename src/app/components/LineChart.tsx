@@ -31,10 +31,6 @@ export default function LineChartComponent({ serverIndex }: LineChartComponentPr
         }
 
         fetchData();
-
-        const interval = setInterval(fetchData, 60000); // Every minute
-
-        return () => clearInterval(interval); // Clean up on unmount
     }, [serverIndex]);
     
     if (isLoading) {
