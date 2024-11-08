@@ -9,7 +9,7 @@ export default function RootLayout({
 	return (
 		<div style={{ height: '100%', width: '100%' }}>
 			<ParticlesBackground
-				imageSrc='/images/Logo.svg'
+				imageSrc='/images/logo/logo.svg'
 				imageSize={[7, 10]}
 				density={[15, 15]}
 				click={false}

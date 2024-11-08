@@ -12,7 +12,7 @@ export default function Home() {
 	return (
 		<div className={styles.wrapper}>
 			<ParticlesBackground
-				imageSrc='/images/Logo.svg'
+				imageSrc='/images/logo/logo.svg'
 				imageSize={[7, 10]}
 				density={[20, 40]}
 				click={true}
