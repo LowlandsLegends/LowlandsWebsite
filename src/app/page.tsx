@@ -20,7 +20,7 @@ export default function Home() {
 				hover={true}
 			/>
 			<div className="flex flex-col mt-auto z-10">
-				<Logo className="w-72 sm:w-64 md:w-80 lg:w-[400px] h-auto" />
+				<Logo className="w-72 md:w-80 lg:w-[400px] h-auto" />
 			</div>
 			<div className="flex flex-row gap-5 sm:gap-8 md:gap-10 mt-auto mb-32 z-10">
 				<a href="https://discord.gg/46cJAE9z4h">

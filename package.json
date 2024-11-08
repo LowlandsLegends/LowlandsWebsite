@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
     "dev:next": "next dev",
-    "dev:cron": "node --loader ts-node/esm src/app/server/cronJobs.ts",
+    "dev:cron": "node --loader ts-node/esm cronJobs.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
