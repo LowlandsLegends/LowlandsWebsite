@@ -3,7 +3,7 @@ import Link from "next/link"
 import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import Logo from '@images/logo.svg';
+import Logo from '@images/Logo.svg';
 import { useState, useEffect } from "react";
 
 export function Navbar() {
