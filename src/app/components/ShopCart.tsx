@@ -5,6 +5,7 @@ import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ShopItem } from './ShopItems';
+import Loading from './ui/Loading';
 
 interface CartItem extends ShopItem {
 	quantity: number;
@@ -72,7 +73,7 @@ export function ShopCart({ cartItems, onRemoveItem, onCheckout, loading }: ShopC
 									</div>
 								</div>
 								<Button className="w-full" onClick={onCheckout}>
-										{loading ? 'Loading...' : 'Proceed To Checkout'}
+										{loading ? <Loading /> : 'Proceed To Checkout'}
 								</Button>
 							</>
 						)}
