@@ -31,7 +31,7 @@ export function Navbar() {
 		const { error } = await supabase.auth.signInWithOAuth({
 			provider: "discord",
 			options: {
-				redirectTo: `${window.location.origin}/app/shop`,
+				redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL!}/app/shop`,
 			},
 		});
 
