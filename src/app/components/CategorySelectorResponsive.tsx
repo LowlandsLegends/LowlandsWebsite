@@ -32,7 +32,7 @@ export function CategorySelectorResponsive(props: CategorySelectorResponsiveProp
 
     return (
         <>
-            <div className="flex justify-end p-4 md:hidden">
+            <div className="flex justify-end p-4 lg:hidden">
                 <Popover>
                     <PopoverTrigger asChild>
                         <Button variant="shoppingcart" className="relative"  >
@@ -41,12 +41,12 @@ export function CategorySelectorResponsive(props: CategorySelectorResponsiveProp
                             </div>
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent className='md:hidden' id='popover'>
+                    <PopoverContent className='lg:hidden' id='popover'>
                         <CategorySelectorMobileComponent {...props} />
                     </PopoverContent>
                 </Popover>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
                 <CategorySelectorComponent {...props} />
             </div>
         </>
