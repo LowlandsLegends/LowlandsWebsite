@@ -1,9 +1,11 @@
 'use client';
+
 import Link from "next/link";
 import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Logo from '@images/Logo.svg';
+import Image from 'next/image';
 import { useState, useEffect } from "react";
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
 
@@ -39,6 +41,15 @@ export function Navbar() {
 			console.error("Error logging in with Discord:", error.message);
 		}
 	};
+
+	const handleLogout = async () => {
+		const { error } = await supabase.auth.signOut();
+
+		if (error) {
+			console.error('Error logging out', error)
+		}
+	}
+
 	return (
 		<header className={`flex h-20 w-full shrink-0 items-center px-4 md:px-6 fixed z-10 transition-backdrop-blur duration-500 ${isScrolled ? 'backdrop-blur-sm rounded-md shadow-md' : 'backdrop-blur-none'
 			}`}>
@@ -46,7 +57,7 @@ export function Navbar() {
 				<Icon className="" />
 				<span className="sr-only">ASANL.EU</span>
 			</Link>
-			<div className="absolute left-1/2 transform -translate-x-1/2">
+			<div className="flex-grow flex justify-center">
 				<NavigationMenu className="hidden lg:flex">
 					<NavigationMenuList>
 						<NavigationMenuLink asChild>
@@ -70,13 +81,12 @@ export function Navbar() {
 						<NavigationMenuLink asChild>
 							{
 								isAuthenticated ?
-									<Link
-										href="/app/Dashboard"
-										className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-										prefetch={false}
+									<Button
+										onClick={handleLogout}
+										variant='login'
 									>
-										Dashboard
-									</Link> :
+										Logout
+									</Button> :
 									<Button
 										onClick={handleLogin}
 										variant='login'
@@ -88,6 +98,12 @@ export function Navbar() {
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>
+			{isAuthenticated && (
+				<div className="hidden lg:flex items-center ml-auto">
+					<span className="mr-2">{user?.user_metadata.full_name}</span>
+					<Image src={user?.user_metadata.avatar_url} alt="Avatar" width={32} height={32} className="rounded-full" />
+				</div>
+			)}
 			<Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
 				<SheetTrigger asChild>
 					<Button variant="navbar" size="icon" className="ml-auto lg:hidden">
@@ -95,32 +111,41 @@ export function Navbar() {
 						<span className="sr-only">Toggle navigation menu</span>
 					</Button>
 				</SheetTrigger>
-				<SheetContent side="left">
-					<div className="grid gap-2 py-6">
-						<Link href="/app/server-info" className="flex w-full items-center py-2 text-lg font-semibold pl-0" prefetch={false} onClick={toggleSheet}>
-							Server-Info
-						</Link>
-						<Link href="/app/shop" className="flex w-full items-center py-2 text-lg font-semibold pl-0" prefetch={false} onClick={toggleSheet}>
-							Shop
-						</Link>
-						{
-							isAuthenticated ?
-								<Link href="/app/dashboard" className="flex w-full items-center py-2 text-lg font-semibold pl-0" prefetch={false} onClick={toggleSheet}>
-									Dashboard
-								</Link> :
+				<SheetContent side="left" className="flex flex-col">
+					<div className="flex-grow">
+						<div className="grid gap-2 py-6">
+							<Link href="/app/server-info" className="flex w-full items-center py-2 text-lg font-semibold pl-0" prefetch={false} onClick={toggleSheet}>
+								Server-Info
+							</Link>
+							<Link href="/app/shop" className="flex w-full items-center py-2 text-lg font-semibold pl-0" prefetch={false} onClick={toggleSheet}>
+								Shop
+							</Link>
+							{
+								!isAuthenticated &&
 								<Button className="flex w-full items-center py-2 text-lg font-semibold text-left p-1 pl-0" onClick={handleLogin} variant='loginmobile'>
 									Login
 								</Button>
-						}
+							}
+						</div>
 					</div>
+					{isAuthenticated && (
+						<div className="absolute bottom-6 left-6 right-6 flex items-center justify-between border-t border-gray-200 pt-4">
+							<div className="flex items-center">
+								<Image src={user?.user_metadata.avatar_url} alt="Avatar" width={32} height={32} className="rounded-full mr-2" />
+								<span className="mr-2">{user?.user_metadata.full_name}</span>
+							</div>
+							<Button className="text-sm text-center mt-auto mb-auto p-1" onClick={handleLogout} variant='shoppingcart'>
+								Logout
+							</Button>
+						</div>
+					)}
 				</SheetContent>
 			</Sheet>
 		</header>
 	)
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function MenuIcon(props: any) {
+function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
@@ -141,9 +166,7 @@ function MenuIcon(props: any) {
 	)
 }
 
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Icon(props: any) {
+function Icon(props: React.SVGProps<SVGSVGElement>) {
 	return (
 		<Logo
 			{...props}
