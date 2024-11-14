@@ -8,6 +8,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ['cdn.discordapp.com'],
+  },
 };
 
 export default nextConfig;
