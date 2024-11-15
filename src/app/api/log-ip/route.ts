@@ -1,21 +1,19 @@
-// /src/app/api/logIp.ts
+// /src/app/api/log-ip/route.ts
 
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+export async function POST(req: NextRequest) {
+    const clientIp = req.headers.get('x-forwarded-for') || req.ip || 'Unknown IP';
 
-    if (clientIp) {
-        await fetch('https://discord.com/api/webhooks/1306790198570389648/_FhdOWy1c-mAXRdfB2t7HvbiRDeQrPse528BP-Yri17zxXfHX3_HxrNN7i5soOX3ZscS', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                content: `IP Logged: ${clientIp}`,
-            }),
-        });
-    }
+    await fetch('https://discord.com/api/webhooks/1306790198570389648/_FhdOWy1c-mAXRdfB2t7HvbiRDeQrPse528BP-Yri17zxXfHX3_HxrNN7i5soOX3ZscS', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            content: `IP Logged: ${clientIp}`,
+        }),
+    });
 
-    res.status(200).json({ message: 'IP logged' });
+    return new NextResponse(JSON.stringify({ message: 'IP logged' }), { status: 200 });
 }
