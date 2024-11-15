@@ -1,17 +1,17 @@
 import React from "react";
 import { Metadata } from "next";
 
-import HomePage from "./homepage";
+import HomePageClient from "./homepage";
 
 export const metadata: Metadata = {
     title: "LowlandsLegendsPVP",
 };
 
-const ShopPage: React.FC = async () => {
+const HomePage: React.FC = async () => {
     return (
         <div>
-            <HomePage />
+            <HomePageClient />
         </div>
     );
 }
-export default ShopPage
+export default HomePage

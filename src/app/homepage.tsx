@@ -12,7 +12,7 @@ import ParticlesBackground from '@/src/app/components/ui/Particles'
 import Icon from './components/ui/Icon'
 
 
-export default function HomePage() {
+export default function HomePageClient() {
 	const targetDate = new Date('2024-12-16')
 	const startDate = new Date('2024-11-12') // Assuming 1 month countdown
 	const [timeLeft, setTimeLeft] = useState({
