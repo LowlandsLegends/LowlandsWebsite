@@ -80,7 +80,7 @@ export function ShopItems({ shopItems, onAddToCart }: ShopItemsProps) {
 
         while (i < description.length && length < maxLength) {
             const char = description[i];
-            const nextTwoChars = description.substr(i, 2);
+            const nextTwoChars = description.substring(i, 2);
 
             if (nextTwoChars === '**') {
                 if (stack[stack.length - 1] === '**') {
@@ -134,7 +134,7 @@ export function ShopItems({ shopItems, onAddToCart }: ShopItemsProps) {
     }
 
     return (
-        <div className="w-full h-auto text-card-foreground p-4 rounded-lg shadow-custom backdrop-blur-sm">
+        <div className="w-full min-h-[37rem] h-auto text-card-foreground p-4 rounded-lg shadow-custom backdrop-blur-sm">
             {isDesktop && totalPages > 1 && (
                 <div className="absolute top-1/2 left-0 right-0 flex justify-between flex-grow transform -translate-y-1/2">
                     <Button
