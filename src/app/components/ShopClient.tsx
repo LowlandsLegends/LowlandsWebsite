@@ -82,9 +82,7 @@ const ShopClient: React.FC<ShopClientProps> = ({ shopItemsData, categories }) =>
 				/>
 			</div>
 			<div className={styles.ShopItemsWrapper}>
-				<div className="w-full h-auto text-card-foreground p-4 rounded-lg shadow-custom backdrop-blur-sm">
-					<ShopItems shopItems={filteredItems} onAddToCart={handleAddToCart} />
-				</div>
+				<ShopItems shopItems={filteredItems} onAddToCart={handleAddToCart} />
 			</div>
 			<div className={styles.ShopCart} style={{ zIndex: 10 }}>
 				<ShopCart

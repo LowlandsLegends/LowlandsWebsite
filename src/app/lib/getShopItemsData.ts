@@ -19,6 +19,7 @@ export async function getShopItemsData(): Promise<ShopItem[]> {
         { id: '4', name: 'Rebuild Kit', description: '', price: 7.99, category: '4' },
         { id: '5', name: 'Boss Summoning Totem', description: '', price: 29.99, category: '5' },
         { id: '6', name: 'Mystery Lootbox', description: '', price: 4.99, category: '6' },
+        { id: '7', name: 'Mystery Lootbox', description: '', price: 4.99, category: '6' },
     ];
 
     // Read markdown descriptions for each item
