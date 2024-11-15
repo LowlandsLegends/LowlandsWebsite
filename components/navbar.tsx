@@ -134,7 +134,7 @@ export function Navbar() {
 								<Image src={user?.user_metadata.avatar_url} alt="Avatar" width={32} height={32} className="rounded-full mr-2" />
 								<span className="mr-2">{user?.user_metadata.full_name}</span>
 							</div>
-							<Button className="text-sm text-center mt-auto mb-auto p-1" onClick={handleLogout} variant='ghost'>
+							<Button className="text-sm text-center mt-auto mb-auto p-1" onClick={handleLogout} variant='shoppingcart'>
 								Logout
 							</Button>
 						</div>

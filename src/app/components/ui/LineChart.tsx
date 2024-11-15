@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { LineChart, XAxis, YAxis, Line, ResponsiveContainer, Tooltip } from 'recharts';
-import { ChartDataPoint } from './ServerInfoCard';
-import Loading from './ui/Loading';
+import { ChartDataPoint } from '../server-info/ServerInfoCard';
+import Loading from './Loading';
 
 
 interface LineChartComponentProps {

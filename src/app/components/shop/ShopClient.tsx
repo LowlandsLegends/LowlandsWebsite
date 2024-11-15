@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { ShopItems, ShopItem } from './ShopItems';
-import { CategorySelectorResponsive } from './CategorySelectorResponsive'; // Use the responsive selector
+import { CategorySelectorResponsive } from './Categoryselect/CategorySelectorResponsive'; // Use the responsive selector
 import styles from './ShopClient.module.scss';
 import { ShopCart } from './ShopCart';
 import { loadStripe } from '@stripe/stripe-js';

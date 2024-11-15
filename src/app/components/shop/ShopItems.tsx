@@ -139,14 +139,14 @@ export function ShopItems({ shopItems, onAddToCart }: ShopItemsProps) {
                 <div className="absolute top-1/2 left-0 right-0 flex justify-between flex-grow transform -translate-y-1/2">
                     <Button
                         onClick={prevPage}
-                        className="rounded-full p-1 z-10"
+                        className="rounded-xl p-1 z-10"
                         aria-label="Previous page"
                     >
                         <ChevronLeft className="h-6 w-6 " />
                     </Button>
                     <Button
                         onClick={nextPage}
-                        className="rounded-full p-1"
+                        className="rounded-xl p-1"
                         aria-label="Next page"
                     >
                         <ChevronRight className="h-6 w-6" />
@@ -156,12 +156,15 @@ export function ShopItems({ shopItems, onAddToCart }: ShopItemsProps) {
             <div className="relative">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
                     {displayedItems.map((item) => (
-                        <Card key={item.id} className="h-64 ">
+                        <Card
+                            key={item.id}
+                            className="h-64 ease-in"
+                        >
                             <CardHeader>
                                 <CardTitle>{item.name}</CardTitle>
                             </CardHeader>
                             <CardContent className="flex flex-col justify-between">
-                                <ReactMarkdown className="text-sm text-white">
+                                <ReactMarkdown className="text-sm text-white overflow-hidden">
                                     {getDescriptionPreview(item.description, 110) + " ..."}
                                 </ReactMarkdown>
                             </CardContent>

@@ -1,7 +1,12 @@
 // pages/about.tsx
 import React from 'react';
 import styles from './page.module.scss'
-import ServerInfoCard from '@components/ServerInfoCard';
+import ServerInfoCard from '@components/server-info/ServerInfoCard';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: "Server-Info",
+};
 
 const InfoPage: React.FC = () => {
 	return (

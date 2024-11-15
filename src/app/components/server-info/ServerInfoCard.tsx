@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Users, Swords, Shield } from "lucide-react"
-import LineChartComponent from "./LineChart"
+import LineChartComponent from "../ui/LineChart"
 import Graph from '@images/Graph.svg'
 import useSWR from 'swr'
 import { useEffect, useState } from "react"

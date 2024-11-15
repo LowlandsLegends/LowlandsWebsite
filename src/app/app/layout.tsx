@@ -1,5 +1,5 @@
 import { Navbar } from '@/components/navbar';
-import ParticlesBackground from "@components/Particles"
+import ParticlesBackground from "@components/ui/Particles"
 
 export default function RootLayout({
 	children,

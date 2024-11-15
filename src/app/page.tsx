@@ -4,8 +4,8 @@ import Logo from '@images/Logo_Text.svg';
 import DiscordLogo from '@images/Discord_Icon.svg';
 import AscendedLogo from '@images/White_Ascended_Logo.svg';
 import ShopIcon from '@images/Shop.svg';
-import Icon from '@components/Icon';
-import ParticlesBackground from '@components/Particles';
+import Icon from '@/src/app/components/ui/Icon';
+import ParticlesBackground from '@/src/app/components/ui/Particles';
 
 export default function Home() {
 	return (
