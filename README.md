@@ -12,7 +12,7 @@ This project includes:
 - Server Info display, such as Server-IP, Player Count (using [RCON](https://www.npmjs.com/package/rcon-client)), and Rules 
 - Collapsable Navbar
 - Particles Background using [TsParticles](https://particles.js.org/)
-- [Supabase](https://supabase.com/) for oAuth and database storage **WIP***
+- [Supabase](https://supabase.com/) for oAuth and database storage
 
 ![homepage](./public/images/Homepage.png)
 Homepage Using [TsParticles](https://particles.js.org/) for the background
