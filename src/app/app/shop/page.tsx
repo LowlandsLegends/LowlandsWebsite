@@ -1,6 +1,7 @@
 import React from "react";
 import ShopClient from "@components/shop/ShopClient";
 import { getShopItemsData } from "@lib/getShopItemsData";
+import { Metadata } from "next";
 
 
 const categories = [
@@ -11,7 +12,6 @@ const categories = [
     { id: "5", name: "Boss kits", image: "/images/ascended_tier.jpg" },
     { id: "6", name: "Lootboxes", image: "/images/ascended_tier.jpg" }
 ]
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Shop",
