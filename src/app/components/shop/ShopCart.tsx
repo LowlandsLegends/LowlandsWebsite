@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ShopItem } from './ShopItems';
 import Loading from '../ui/Loading';
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 
 interface CartItem extends ShopItem {
 	quantity: number;
@@ -24,6 +25,26 @@ export function ShopCart({ cartItems, onRemoveItem, onCheckout, loading }: ShopC
 		(sum, item) => sum + item.price * (item.quantity || 1),
 		0
 	);
+
+	const supabase = useSupabaseClient();
+
+	const session = useSession();
+	const user = session?.user;
+	const cartItemsParam = encodeURIComponent(JSON.stringify(cartItems));
+
+
+	const handleLogin = async () => {
+		const { error } = await supabase.auth.signInWithOAuth({
+			provider: "discord",
+			options: {
+				redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL!}/app/shop?cartitems=${cartItemsParam}`,
+			},
+		});
+
+		if (error) {
+			console.error("Error logging in with Discord:", error.message);
+		}
+	};
 
 	return (
 		<div className="flex justify-end p-4">
@@ -72,8 +93,15 @@ export function ShopCart({ cartItems, onRemoveItem, onCheckout, loading }: ShopC
 										<span>€{totalPrice.toFixed(2)}</span>
 									</div>
 								</div>
-								<Button className="w-full" onClick={onCheckout}>
-										{loading ? <Loading /> : 'Proceed To Checkout'}
+								<Button className="w-full"
+									onClick={() => {
+										if (user) {
+											onCheckout()
+										} else {
+											handleLogin()
+										}
+									}}>
+									{!user ? 'Click To Login' : loading ? <Loading /> : 'Proceed To Checkout'}
 								</Button>
 							</>
 						)}

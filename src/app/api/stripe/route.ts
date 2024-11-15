@@ -18,10 +18,6 @@ export async function POST(req: Request) {
         const successUrl = `${baseUrl.replace(/\/$/, '')}/app/shop/success?session_id={CHECKOUT_SESSION_ID}`;
         const cancelUrl = `${baseUrl.replace(/\/$/, '')}/app/shop/cancel`;
 
-        // Log the URLs for debugging
-        console.log('Success URL:', successUrl);
-        console.log('Cancel URL:', cancelUrl);
-
         // Create a new checkout session
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],

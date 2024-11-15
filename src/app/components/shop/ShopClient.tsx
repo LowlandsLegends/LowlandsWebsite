@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ShopItems, ShopItem } from './ShopItems';
 import { CategorySelectorResponsive } from './Categoryselect/CategorySelectorResponsive'; // Use the responsive selector
 import styles from './ShopClient.module.scss';
 import { ShopCart } from './ShopCart';
 import { loadStripe } from '@stripe/stripe-js';
+import { useSearchParams } from 'next/navigation';
 
 interface ShopClientProps {
 	shopItemsData: ShopItem[];
@@ -21,6 +22,7 @@ const ShopClient: React.FC<ShopClientProps> = ({ shopItemsData, categories }) =>
 	const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
 	const [loading, setLoading] = useState(false);
+	const searchParams = useSearchParams();
 
 	const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -66,6 +68,20 @@ const ShopClient: React.FC<ShopClientProps> = ({ shopItemsData, categories }) =>
 		}
 		setLoading(false);
 	};
+
+	useEffect(() => {
+		const cartItemsParam = searchParams.get('cartitems');
+		if (cartItemsParam) {
+			try {
+				const parsedCartItems: CartItem[] = JSON.parse(cartItemsParam);
+				setCartItems(parsedCartItems);
+			} catch (error) {
+				console.error('Error parsing cartitems from searchParams:', error);
+			}
+		}
+	}, [searchParams]);
+
+
 
 	const filteredItems = selectedCategory
 		? shopItemsData.filter(item => item.category === selectedCategory)
