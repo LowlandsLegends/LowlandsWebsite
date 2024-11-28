@@ -20,7 +20,13 @@ export interface ChartDataPoint {
 	playerCount: number;
 }
 
-const fetcher = (url: string) => fetch(url).then(res => res.json())
+const fetcher = async (url: string) => {
+	const res = await fetch(url);
+	if (!res.ok) {
+		throw new Error(`HTTP error! Status:`);
+	}
+	return res.json();
+};
 
 const StatusIndicator = ({ isOnline, isLoading }: { isOnline: boolean; isLoading: boolean }) => (
 	<div
@@ -52,12 +58,12 @@ export default function ServerInfoCard({
 	const [isOnline, setIsOnline] = useState(false)
 
 	useEffect(() => {
-		if (!error && data && data.length > 0) {
-			setIsOnline(true)
+		if (error || !data || data.length === 0) {
+			setIsOnline(false);
 		} else {
-			setIsOnline(false)
+			setIsOnline(true);
 		}
-	}, [data, error])
+	}, [data, error]);
 
 	return (
 		<Card className="w-full max-w-md overflow-hidden p-1">

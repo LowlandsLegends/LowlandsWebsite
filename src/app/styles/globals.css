@@ -64,3 +64,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.no-focus {
+    outline: none;
+    box-shadow: none;
+}
