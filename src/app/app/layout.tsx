@@ -1,8 +1,6 @@
 import { Navbar } from '@/components/navbar';
 import ParticlesBackground from "@components/ui/Particles"
 import Footer from '@components/ui/Footer';
-import { usePathname } from 'next/navigation';
-
 
 export default function RootLayout({
 	children,
