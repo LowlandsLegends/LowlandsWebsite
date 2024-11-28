@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ShopClient from "@components/shop/ShopClient";
 import { getShopItemsData } from "@lib/getShopItemsData";
 import { Metadata } from "next";
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 const ShopPage: React.FC = async () => {
     const shopItemsData = await getShopItemsData();
     return (
-        <div>
+        <Suspense fallback={<div>Loading shop...</div>}>
             <ShopClient shopItemsData={shopItemsData} categories={categories}  />
-        </div>
+        </Suspense>
     );
 }
 export default ShopPage
