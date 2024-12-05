@@ -139,17 +139,17 @@ export function ShopItems({ shopItems, onAddToCart }: ShopItemsProps) {
                 <div className="absolute top-1/2 left-0 right-0 flex justify-between flex-grow transform -translate-y-1/2">
                     <Button
                         onClick={prevPage}
-                        className="rounded-xl p-1 z-10"
+                        className="rounded-xl p-1 z-10 w-8"
                         aria-label="Previous page"
                     >
-                        <ChevronLeft className="h-6 w-6 " />
+                        <ChevronLeft className="h-6" />
                     </Button>
                     <Button
                         onClick={nextPage}
-                        className="rounded-xl p-1"
+                        className="rounded-xl p-1 z-10 w-8"
                         aria-label="Next page"
                     >
-                        <ChevronRight className="h-6 w-6" />
+                        <ChevronRight className="h-6" />
                     </Button>
                 </div>
             )}
