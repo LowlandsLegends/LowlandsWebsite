@@ -35,7 +35,7 @@ const InfoPage: React.FC = () => {
 					serverIp='212.132.124.138:7791'
 					gamemode='pvp'
 					upTime={99}
-					serverIndex={1} 
+					serverIndex={2} 
 				/>
 
 			</div>
