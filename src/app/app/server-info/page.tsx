@@ -39,9 +39,9 @@ const InfoPage: React.FC = () => {
 				/>
 
 			</div>
-			<div className={styles.chatBox}>
+			{/* <div className={styles.chatBox}>
 				<ChatBox />
-			</div>
+			</div> */}
 		</div>
 		<div className="fixed bottom-8 right-0 flex justify-end p-4 lg:hidden">
 			<Popover>
