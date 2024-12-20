@@ -34,10 +34,9 @@ export default function ChatBox() {
     const scrollRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://212.132.124.138:3003';
         const fetchMessages = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/chat/get-chat`);
+                const response = await fetch('/api/chat/get-chat');
                 const data = await response.json();
                 setMessages(data);
             } catch (error) {
