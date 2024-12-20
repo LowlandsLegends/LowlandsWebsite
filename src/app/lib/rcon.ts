@@ -10,12 +10,12 @@ export class RCONScheduler {
     };
     rconClient: Rcon | undefined;
 
-    servers: Array<{ index: number; name: string; port: number }> = [
+    static servers: Array<{ index: number; name: string; port: number }> = [
         { index: 0, name: "The Island", port: 7779 },
-        { index: 1, name: "The Center", port: 7791 },
-        { index: 2, name: "Scorched Earth", port: 7782 },
-        { index: 3, name: "Aberration", port: 7788 },
+        { index: 1, name: "Abberation", port: 7788 },
+        { index: 2, name: "Extinction", port: 7791 }
     ];
+
 
     /**
      * @constructor
@@ -31,7 +31,7 @@ export class RCONScheduler {
             throw new Error('RCON IP or Password not set.');
         }
 
-        const server = this.servers.find((srv) => srv.index === this.index);
+        const server = RCONScheduler.servers.find((srv) => srv.index === this.index);
 
         if (!server) {
             throw new Error(`No server found with index ${this.index}.`);
@@ -131,6 +131,20 @@ export class RCONScheduler {
             timestamp: row.timestamp,
             playerCount: row.player_count,
         }));
+    }
+
+    static async sendChatToAllServers(message: { server_index: number; username: string; message: string }){
+        this.servers.forEach(async (obj) => {
+            const server = new RCONScheduler(obj.index);
+            try{
+                await server.connectRCON()
+                server.executeRconCommand(`serverchat Web [${message.username}] : ${message.message} `)
+            } catch (error){
+                console.log(error)
+                throw error
+            }
+                
+        });
     }
 }
 

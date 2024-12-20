@@ -28,7 +28,6 @@ const latestPlayerdata = async (index: number): Promise<playerCountData> => {
 
 };
 
-
 export async function GET(
     request: Request,
     { params }: { params: { serverIndex: string } }

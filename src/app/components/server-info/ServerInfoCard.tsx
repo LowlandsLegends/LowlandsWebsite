@@ -46,14 +46,16 @@ export default function ServerInfoCard({
 	upTime = 99,
 	serverIndex,
 }: ServerInfoProps) {
+	const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://212.132.124.138:3003';
+
 	const { data, error, isValidating } = useSWR<ChartDataPoint[]>(
-		`/api/player-count/${serverIndex}`,
+		`${API_BASE_URL}/api/player-count/${serverIndex}`,
 		fetcher,
 		{
 			refreshInterval: 300000, // 5 minutes in milliseconds
 			revalidateOnFocus: true,
 		}
-	)
+	);
 
 	const [isOnline, setIsOnline] = useState(false)
 
