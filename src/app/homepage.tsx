@@ -3,7 +3,7 @@
 import Logo from '@images/Logo.svg';
 import DiscordLogo from '@images/Discord_Icon.svg';
 import AscendedLogo from '@images/White_Ascended_Logo.svg';
-//import ShopIcon from '@images/Shop.svg';
+import ShopIcon from '@images/Shop.svg';
 import Icon from '@/src/app/components/ui/Icon';
 import ParticlesBackground from '@/src/app/components/ui/Particles';
 
@@ -29,9 +29,9 @@ export default function Home() {
 				<a href="/app/server-info">
 					<Icon Component={AscendedLogo} alt="Ascended Logo" />
 				</a>
-				{/* <a href="/app/shop">
+				 <a href="/app/shop">
 					<Icon Component={ShopIcon} alt="Shop Icon" />
-				</a> */}
+				</a> 
 			</div>
 		</div>
 	);

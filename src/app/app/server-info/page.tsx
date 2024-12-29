@@ -2,11 +2,11 @@
 import React from 'react';
 import styles from './page.module.scss'
 import ServerInfoCard from '@components/server-info/ServerInfoCard';
-//import ChatBox from '@components/server-info/ChatBox'
+import ChatBox from '@components/server-info/ChatBox'
 import { Metadata } from 'next';
-//import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-//import { Button } from '@/components/ui/button';
-//import { MessageSquareMore } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
+import { MessageSquareMore } from 'lucide-react';
 
 export const metadata: Metadata = {
 	title: "Server-Info",
@@ -39,12 +39,12 @@ const InfoPage: React.FC = () => {
 				/>
 
 			</div>
-			{/* <div className={styles.chatBox}>
+			 <div className={styles.chatBox}>
 				<ChatBox />
-			</div> */}
+			</div> 
 		</div>
 		<div className="fixed bottom-8 right-0 flex justify-end p-4 lg:hidden">
-			{/* <Popover>
+			 <Popover>
 				<PopoverTrigger asChild>
 					<Button variant="shoppingcart" className="relative">
 						<div className="h-10 w-10 flex items-center justify-center">
@@ -55,7 +55,7 @@ const InfoPage: React.FC = () => {
 				<PopoverContent className='lg:hidden w-full' id='popover'>
 					<ChatBox />
 				</PopoverContent>
-			</Popover> */}
+			</Popover> 
 		</div>
 		</>
 
